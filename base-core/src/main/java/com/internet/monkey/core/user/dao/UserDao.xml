@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD iBatis Mapper 3.0 //EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.internet.monkey.core.user.dao.UserDao">
+
+    <insert id="addUser" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO sys_user (username, nickname, password, address, sex,user_avatar) VALUES (#{username},#{nickname},#{password}, #{address}, #{sex},#{userAvatar})
+    </insert>
+
+    <insert id="addUserRole">
+        INSERT INTO sys_user_role (user_id, role_id) VALUES (#{id},#{role.id})
+    </insert>
+    <update id="updateUser">
+        UPDATE sys_user SET username = #{username}, nickname=#{nickname}
+        <if test="password != '' and password!=null">
+            ,password = #{password}
+        </if>
+        where id = #{id}
+    </update>
+    <update id="updateUserRole">
+        UPDATE sys_user_role SET role_id=#{role.id} where user_id=#{id}
+    </update>
+    <update id="updatePassword">
+        UPDATE sys_user SET password=#{password} where id=#{id}
+    </update>
+
+    <delete id="delUserById">
+        DELETE FROM sys_user WHERE id=#{id}
+    </delete>
+
+    <delete id="delUserRoleByUserId">
+        DELETE FROM sys_user_role WHERE user_id=#{userId}
+    </delete>
+
+    <select id="getUserListPage" resultType="com.internet.monkey.core.user.pojo.User">
+        SELECT * FROM sys_user
+    </select>
+
+    <resultMap id="userMap" type="com.internet.monkey.core.user.pojo.User">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="nickname" property="nickname"/>
+        <result column="role_id" property="role.id"/>
+        <result column="role_name" property="role.roleName"/>
+        <result column="address" property="address"/>
+        <result column="sex" property="sex"/>
+        <result column="user_avatar" property="userAvatar"/>
+    </resultMap>
+
+    <select id="getUserByUsername" resultMap="userMap">
+        SELECT su.`id`,su.`nickname`,su.`password`,su.`username`,sr.`id` role_id ,sr.`role_name`,su.`address`,su.`sex`,su.`user_avatar`
+        FROM sys_user su,sys_user_role sur, sys_role sr
+        WHERE su.`id`=sur.`user_id` AND sur.`role_id`=sr.`id` AND su.`username`= #{username}
+    </select>
+
+    <select id="getPermTokenByUsername" resultType="java.lang.String">
+        SELECT perm_token FROM sys_user su, sys_user_role sur, sys_role_permission srp, sys_permission sp
+        WHERE su.`id`=sur.`user_id` AND sur.`role_id` = srp.`role_id` AND
+        srp.`perm_id`= sp.`id` AND su.`username`=#{username}
+    </select>
+
+    <select id="getUserById" resultMap="userMap">
+        SELECT su.`id`,su.`nickname`,su.`password`,su.`username`,sr.`id` role_id ,sr.`role_name`,su.`address`,su.`sex`,su.`user_avatar`
+        FROM sys_user su,sys_user_role sur, sys_role sr
+        WHERE su.`id`=sur.`user_id` AND sur.`role_id`=sr.`id` AND su.`id`= #{id}
+    </select>
+    <update id="updateNickName">
+        update sys_user set nickname = #{nickname} where id = #{id}
+    </update>
+    <update id="updateUserName">
+        update sys_user set username = #{username} where id = #{id}
+    </update>
+    <update id="updateSex">
+        update sys_user set sex = #{sex}
+    </update>
+</mapper>

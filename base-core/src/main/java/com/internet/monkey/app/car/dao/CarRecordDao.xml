@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.internet.monkey.app.car.dao.CarRecordDao">
+
+    <insert id="addCarRecord">
+        INSERT INTO car_record (car_light, car_machine, car_shift, car_gas, record_time, car_id, description, mileage) VALUES
+        (#{carLight}, #{carMachine}, #{carShift},#{carGas}, #{recordTime},#{carId}, #{description}, #{milegag})
+    </insert>
+
+    <select id="getCarRecordListPage" resultType="com.internet.monkey.app.car.pojo.CarRecord">
+        SELECT * FROM car_record WHERE car_id = #{carId} ORDER BY record_time DESC
+    </select>
+    <select id="getCarRecordById" resultType="com.internet.monkey.app.car.pojo.CarRecord">
+        SELECT * FROM car_record WHERE id=#{id}
+    </select>
+
+    <update id="updateLampStatus">
+        update car_record SET lamp_status = #{lampStatus} where car_id = #{id}
+    </update>
+    
+    <update id="updateEnginePerformance">
+        update car_record set engine_performance = #{enginePerformance} where car_id=#{id};
+    </update>
+
+    <update id="updateTransmissionPerformance">
+        update car_record set transmission_performance = #{transmissionPerformance} where car_id=#{id};
+    </update>
+
+    <update id="updateFuelAmount">
+        update car_record set fuel_amount = #{fuelAmount} where car_id = #{id}
+    </update>
+    
+    <update id="updateExpendNumber">
+        update car_record set expend_number = #{expendNumber} where car_id = #{id};
+    </update>
+</mapper>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.internet.monkey.app.car.dao.CarInfoDao">
+
+    <insert id="addCarInfo">
+        INSERT INTO car_info (car_name, car_number, car_nature, car_brand,body_level,car_type, car_machine_no, user_id, car_photo) VALUES
+        (#{carName},#{carNumber}, #{carNature}, #{carBrand}, #{bodyLevel}, #{carType},#{carMachineNo}, #{userId}, #{carPhoto})
+        <selectKey resultType="string" keyProperty="id">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+    <update id="updateCarInfo">
+        UPDATE car_info SET car_name = #{carName}, car_photo = #{carPhoto},car_number=#{carNumber}, car_nature=#{carNature}, car_brand=#{carBrand},body_level=#{bodyLevel},car_type=#{carType},
+        car_machine_no=#{carMachineNo}, expend_number+#{expendNumber} where id=#{id}
+    </update>
+
+    <delete id="deleteCarInfoById">
+        DELETE FROM car_info WHERE id=#{id}
+    </delete>
+
+    <select id="getCarInfoByUserId" resultType="com.internet.monkey.app.car.pojo.CarInfo">
+       SELECT a.id,a.car_number,b.name AS car_brand,c.car_type_name AS car_type,a.car_machine_no,d.level AS body_level,
+        a.user_id,a.car_photo FROM car_info a,brand b,car_type c,car_body_level d WHERE a.`car_brand` = b.`id`
+        AND a.`car_type` = c.`id` AND a.`body_level` = d.`id` AND a.`user_id`= #{userId}
+    </select>
+
+    <select id="getCarInfoById" resultType="com.internet.monkey.app.car.pojo.CarInfo">
+        SELECT * FROM car_info WHERE id=#{id}
+    </select>
+    <select id="getCarIdByCarNum" resultType="java.lang.String">
+        SELECT id FROM car_info WHERE car_number=#{carNum}
+    </select>
+
+    <select id="getCarChangeInfo" resultType="com.internet.monkey.app.car.pojo.CarInfo">e
+        SELECT lamp_status,engine_performance,transmission_performance,fuel_amount,expand_number,car_id FROM car_record where where car_id = #{carId}
+    </select>
+
+    <insert id="addCarChangeInfo">
+         INSERT INTO car_record (lamp_status,engine_performance,transmission_performance,fuel_amount,expend_number,car_id) VALUES
+        (#{lampStatus},#{enginePerformance},#{transmissionPerformance},#{fuelAmount},#{expendNumber},#{id})
+    </insert>
+
+    <select id="getDetailCarInfoByCarId" resultType="com.internet.monkey.app.car.pojo.CarInfo">
+      SELECT a.id,a.car_number,b.name AS car_brand,c.car_type_name AS car_type,a.car_machine_no,d.level AS body_level,a.user_id,
+	a.car_photo,e.lamp_status,e.`engine_performance`,e.`transmission_performance`,e.`fuel_amount`,e.`expend_number`
+        FROM car_info a,brand b,car_type c,car_body_level d,car_record e
+        WHERE a.`car_brand` = b.`id` AND a.`car_type` = c.`id` AND a.`body_level` = d.`id` AND a.`id` = e.`car_id` AND a.`id`=#{carId}
+    </select>
+</mapper>

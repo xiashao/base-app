@@ -1,0 +1,51 @@
+<div class="modal-dialog modal-lg">
+    <div class="modal-content" id="modalContent">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+            <h4 class="modal-title" id="modalTitle">新增角色</h4>
+        </div>
+        <div class="modal-body form">
+            <form id="dialogForm" class="form-horizontal">
+                <div class="form-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">角色名<span class="required"> * </span></label>
+
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-medium" placeholder="请输入角色名"
+                                           id="roleName" name="roleName" required="required" maxlength="50" value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group last">
+                                <label class="col-md-4 control-label">描述<span class="required"> * </span></label>
+
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-medium" placeholder="请输入描述"
+                                           id="roleDescription" name="roleDescription" value="" maxlength="50" >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">权限</label>
+
+                                <div class="col-md-10">
+                                    <ul id="permissionTree" class="ztree"></ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn blue" id="addBtn">保存</button>
+            <button type="button" class="btn default" data-dismiss="modal">关闭</button>
+        </div>
+    </div>
+</div>

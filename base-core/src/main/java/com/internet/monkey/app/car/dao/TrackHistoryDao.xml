@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.internet.monkey.app.car.dao.TrackHistoryDao">
+
+    <insert id="addTrackHistory">
+        INSERT INTO track_history (user_id, from, to, crated_time, fromx, fromy, tox, toy) VALUES
+        (#{userId}, #{from}, #{to},#{createTime}, #{fromx}, #{fromy}, #{tox}, #{toy})
+    </insert>
+
+    <select id="getTrackHistory" resultType="com.internet.monkey.app.car.pojo.TrackHistory">
+        SELECT * FROM track_history WHERE user_id=#{userId} order by crated_time desc
+    </select>
+
+
+</mapper>

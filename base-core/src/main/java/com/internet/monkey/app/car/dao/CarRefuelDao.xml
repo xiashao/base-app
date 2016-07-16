@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.internet.monkey.app.car.dao.CarRefuelDao">
+    <insert id="addCarRefuelType">
+        INSERT INTO car_refuel_type (car_id, refuel_id) VALUES (#{carId},#{refuelType})
+    </insert>
+
+
+    <select id="getRefuelByCar" resultType="com.internet.monkey.app.car.pojo.CarRefuelType">
+        SELECT a.id,a.car_id,b.name AS refuel_type FROM car_refuel_type a, refuel_type b WHERE a.`refuel_id` = b.id AND a. car_id = #{carId}
+    </select>
+
+    <select id="getAllRefuelType" resultType="com.internet.monkey.app.car.pojo.RefuelType">
+        SELECT * FROM refuel_type
+    </select>
+</mapper>

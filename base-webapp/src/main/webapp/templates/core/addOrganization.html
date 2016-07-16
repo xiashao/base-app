@@ -1,0 +1,113 @@
+<div class="modal-dialog modal-lg">
+    <div class="modal-content" id="modalContent">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+            <h4 class="modal-title" id="modalTitle"></h4>
+        </div>
+        <div class="modal-body form">
+            <form id="dialogForm" class="form-horizontal">
+                <div class="form-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">{{i18n.departmentId}}<span class="required"> * </span></label>
+
+                                <div class="col-md-8">
+                                    <input type="hidden" id="parentId" value="{{selectedNode.organizationId}}"/>
+                                    <input type="hidden" id="level" value="{{selectedNode.level}}"/>
+                                    <input type="text" class="form-control input-medium" placeholder="{{i18n.departmentId}}"
+                                    id="organId" name="organizationId" required="required" maxlength="11">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">{{i18n.departmentName}}<span class="required"> * </span></label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-medium" placeholder="{{i18n.departmentName}}"
+                                    id="organName" name="organizationName" required="required" maxlength="200">
+                                    <span class="help-block">{{i18n.thisDepartmentName}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group last">
+                                <label class="col-md-4 control-label">{{i18n.orderNo}}</label>
+
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-medium" placeholder="{{i18n.orderNo}}"
+                                    id="sequence" name="sequence" value="1000">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">{{i18n.isEndDepartment}}</label>
+                                <div class="col-md-8">
+                                    <div class="radio-list">
+                                        <label class="radio-inline">
+                                            <input type="radio" name="leaf" value="true"  checked="checked">{{i18n.yes}}
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="leaf" value="false">{{i18n.no}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group last">
+                                <label class="col-md-4 control-label">{{i18n.isUse}}</label>
+                                <div class="col-md-8">
+                                    <div class="radio-list">
+                                        <label class="radio-inline">
+                                            <input type="radio" name="state" value="true" checked="checked">{{i18n.yes}}
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="state" value="false">{{i18n.no}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5" >
+                            <div class="form-group">
+                                <div class="col-md-offset-3 col-md-9 text-center">
+                                    <label class="control-label">{{i18n.allUser}}</label>
+                                    <select id="originalSelect" class="form-control" multiple="multiple" style="height: 420px;" ></select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="change-select-center-div">
+                                <div class="change-select-btn-div"><a onclick="changeSelect('originalSelect','targetSelect')" class="btn purple" >>></a></div>
+                                <div class="change-select-btn-div"><a onclick="changeSelectAll('originalSelect','targetSelect')" class="btn purple">>>></a></div>
+                                <div class="change-select-btn-div"><a onclick="changeSelect('targetSelect','originalSelect')" class="btn green" ><<</a></div>
+                                <div class="change-select-btn-div"><a onclick="changeSelectAll('targetSelect','originalSelect')" class="btn green" ><<<</a></div>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <div class="col-md-9 text-center">
+                                    <label class="control-label">{{i18n.userExist}}</label>
+                                    <select multiple="multiple" id="targetSelect" class="form-control" optionRequired="true" style="height: 420px;" ></select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn blue" id="addBtn">{{i18n.save}}</button>
+            <button type="button" class="btn default" data-dismiss="modal">{{i18n.close}}</button>
+        </div>
+    </div>
+</div>

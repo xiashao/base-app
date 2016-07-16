@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.internet.monkey.app.car.dao.CarTypeDao">
+    <select id="getCarTypeList" resultType="com.internet.monkey.app.car.pojo.CarType">
+        SELECT * FROM car_type WHERE car_type_id=#{carTypeId}
+    </select>
+
+    <select id="getCarTypeByName" resultType="com.internet.monkey.app.car.pojo.CarType">
+        SELECT * FROM car_type WHERE car_type_name=#{name}
+    </select>
+</mapper>

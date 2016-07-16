@@ -1,0 +1,82 @@
+<div class="modal-dialog modal-lg">
+    <div class="modal-content" id="modalContent">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+            <h4 class="modal-title" id="modalTitle">新增用户</h4>
+        </div>
+        <div class="modal-body form">
+            <form id="dialogForm" class="form-horizontal">
+                <div class="form-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">用户名<span class="required"> * </span></label>
+
+                                <div class="col-md-8">
+                                    <input type="hidden" id="userId" value="">
+                                    <input type="text" class="form-control input-medium" placeholder="请输入用户名"
+                                           id="username" name="username" required="required" maxlength="50" value="">
+                                    <span class="help-block">用户名用于登录</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group last">
+                                <label class="col-md-4 control-label">昵称<span class="required"> * </span></label>
+
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-medium" placeholder="请输入昵称"
+                                           id="nickname" name="nickname" required="required" value="" maxlength="50" >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">密码<span class="required"> * </span></label>
+
+                                <div class="col-md-8">
+                                    <input type="password" class="form-control input-medium" placeholder="请输入密码"
+                                           id="password" name="password" maxlength="50" required="required">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group last">
+                                <label class="col-md-4 control-label">确认密码<span class="required"> * </span></label>
+
+                                <div class="col-md-8">
+                                    <input type="password" class="form-control input-medium" placeholder="请再次输入密码"
+                                           id="rePassword" maxlength="50" name="rePassword" equalTo="#password" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">角色<span class="required"> * </span></label>
+
+                                <div class="col-md-10">
+                                    <select id="roleList" class="form-control select2" style="width: 695px;"
+                                            required="required">
+                                        <option value="">请选择角色</option>
+                                        {{each roleList as role}}
+                                        <option value="{{role.id}}">{{role.roleName}}</option>
+                                        {{/each}}
+                                    </select>
+                                    <span class="help-block"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn blue" id="addBtn">保存</button>
+            <button type="button" class="btn default" data-dismiss="modal">关闭</button>
+        </div>
+    </div>
+</div>

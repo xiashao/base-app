@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.internet.monkey.autocomplete.dao.AutoCompleteDao">
+    <select id="gMenuList" resultType="com.internet.monkey.autocomplete.pojo.AutoComplete">
+        SELECT id,menu_name name FROM sys_menu WHERE is_leaf=1 AND level = 2
+    </select>
+</mapper>
